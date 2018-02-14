@@ -10,7 +10,8 @@ node('master') {
                 sh './gradlew clean build'
             } else {
                 println("WIN Build Stage")
-                bat 'call cmd.exe echo Hello'
+                //bat 'call cmd.exe echo Hello'
+                bat 'call gradlew tasks'
             }
     }
     stage('Test') {
