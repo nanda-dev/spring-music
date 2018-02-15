@@ -21,9 +21,10 @@ node('master') {
         try{
             bat 'call cf delete spring-musics -f'
             bat 'call cf delete-service music-database -f'
-        } catch(Exception e){
+        } catch(err){
             echo "CF delete app/service failed"
-            println(e.getMessage())
+            //println(e.getMessage())
+            println(err)
             currentBuild.result = 'FAILURE'
         }
     }
