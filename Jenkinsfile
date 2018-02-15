@@ -18,8 +18,8 @@ node('master') {
     }
     stage('Teardown'){
         println("Teardown PCF apps and services")
-        bat '''cf delete spring-music -f
-            cf delete-service music-database -f'''
+        bat 'call cf delete spring-music -f'
+        bat 'call cf delete-service music-database -f'
     }
     stage('Deploy') {
         println("Entering Deploy Stage")
