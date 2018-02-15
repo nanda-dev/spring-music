@@ -10,7 +10,7 @@ node('master') {
                 sh './gradlew clean build'
             } else {
                 println("WIN Build Stage")
-                //bat 'call gradlew clean build -x test'
+                bat 'call gradlew clean build -x test'
             }
     }
     stage('Test') {
@@ -22,7 +22,7 @@ node('master') {
             target: 'api.system.cumuluslabs.io',
             organization: 'nsreekala-PAL-JAN8',
             cloudSpace: 'sandbox',
-            credentialsId: 'nanda-pcf2',
+            credentialsId: 'nanda-pcf',
             selfSigned: true, 
             pluginTimeout: 240, 
             servicesToCreate: [
