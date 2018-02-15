@@ -26,7 +26,8 @@ node('master') {
             //println(e.getMessage())
             //throw err
             currentBuild.result = 'FAILURE'
-            step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'nandagopan.gs@cognizant.com 673326@cognizant.com', sendToIndividuals: false])
+            //step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'nandagopan.gs@cognizant.com 673326@cognizant.com', sendToIndividuals: false])
+            mail bcc: '', body: 'test jenkins ', cc: '', from: '', replyTo: '', subject: 'test', to: 'nandagopan.gs@cognizant.com'
         }
     }
     stage('Deploy') {
