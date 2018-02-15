@@ -22,7 +22,7 @@ node('master') {
             target: 'api.system.cumuluslabs.io',
             organization: 'nsreekala-PAL-JAN8',
             cloudSpace: 'sandbox',
-            credentialsId: 'nanda-pcf',
+            credentialsId: 'nanda-pcf2',
             selfSigned: true, 
             pluginTimeout: 240, 
             servicesToCreate: [
