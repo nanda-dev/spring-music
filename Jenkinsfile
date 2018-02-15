@@ -18,7 +18,7 @@ node('master') {
     }
     stage('Deploy') {
         println("Entering Deploy Stage")
-        pushToCloudFoundry(
+        /*pushToCloudFoundry(
             target: 'api.system.cumuluslabs.io',
             organization: 'nsreekala-PAL-JAN8',
             cloudSpace: 'sandbox',
@@ -34,6 +34,8 @@ node('master') {
             manifestChoice: [
                 manifestFile: 'manifest.yml'
             ]
-        ) 
+        ) */
+        
+        pushToCloudFoundry cloudSpace: 'sandbox', credentialsId: 'nanda-pcf', organization: 'nsreekala-PAL-JAN8', selfSigned: true, target: 'api.system.cumuluslabs.io'
     }
 }
