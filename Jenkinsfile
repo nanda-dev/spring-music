@@ -1,7 +1,7 @@
 node('master') {
     stage('Code Checkout') {
         println("Entering Code checkout Stage")
-        checkout scm
+        //checkout scm
     }
     stage('Build') {
         println("Entering Build Stage")
@@ -10,7 +10,7 @@ node('master') {
                 sh './gradlew clean build'
             } else {
                 println("WIN Build Stage")
-                bat 'call gradlew clean build -x test'
+                //bat 'call gradlew clean build -x test'
             }
     }
     stage('Test') {
