@@ -25,7 +25,7 @@ node('master') {
             echo "CF delete app/service failed"
             //println(e.getMessage())
             throw err
-            currentBuild.result = 'FAILURE'
+            currentBuild.result = 'UNSTABLE'
         }
     }
     stage('Deploy') {
@@ -55,5 +55,9 @@ node('master') {
         
         //pushToCloudFoundry cloudSpace: 'sandbox', credentialsId: 'nanda-pcf', organization: 'nsreekala-PAL-JAN8', selfSigned: true, servicesToCreate: [[name: 'music-database', plan: '100mb', resetService: true, type: 'p-mysql']], target: 'api.system.cumuluslabs.io'
         pushToCloudFoundry cloudSpace: 'sandbox', credentialsId: 'nanda-pcf', organization: 'nsreekala-PAL-JAN8', pluginTimeout: 360, selfSigned: true, servicesToCreate: [[name: 'music-database', plan: '100mb', resetService: true, type: 'p-mysql']], target: 'api.system.cumuluslabs.io'
+    }
+    
+    stage('Notify'){
+        step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'nandagopan.gs@cognizant.com 673326@cognizant.com', sendToIndividuals: false])
     }
 }
