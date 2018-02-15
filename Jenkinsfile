@@ -28,7 +28,11 @@ node('master') {
         }
     }
     stage('Deploy') {
-        when (currentBuild.result = 'SUCCESS')
+        when {
+            expression {
+                currentBuild.result = 'SUCCESS'
+            }
+        }   
         println("Entering Deploy Stage")
         /*pushToCloudFoundry(
             target: 'api.system.cumuluslabs.io',
