@@ -19,7 +19,7 @@ node('master') {
     stage('Deploy') {
         println("Entering Deploy Stage")
         pushToCloudFoundry(
-            target: 'https://api.system.cumuluslabs.io',
+            target: 'api.system.cumuluslabs.io',
             organization: 'nsreekala-PAL-JAN8',
             cloudSpace: 'sandbox',
             credentialsId: 'nanda-pcf',
