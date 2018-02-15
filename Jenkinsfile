@@ -24,8 +24,9 @@ node('master') {
         } catch(err){
             echo "CF delete app/service failed"
             //println(e.getMessage())
-            throw err
+            //throw err
             currentBuild.result = 'FAILURE'
+            step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'nandagopan.gs@cognizant.com 673326@cognizant.com', sendToIndividuals: false])
         }
     }
     stage('Deploy') {
@@ -58,7 +59,6 @@ node('master') {
     }
     
     stage('Notify'){
-        prinln(currentBuild.result)
-        step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'nandagopan.gs@cognizant.com 673326@cognizant.com', sendToIndividuals: false])
+        prinln(currentBuild.result)        
     }
 }
