@@ -10,7 +10,7 @@ node('master') {
                 sh './gradlew clean build'
             } else {
                 println("WIN Build Stage")
-                bat 'call gradlew clean build -x test'
+                //bat 'call gradlew clean build -x test'
             }
     }
     stage('Test') {
@@ -23,15 +23,15 @@ node('master') {
             organization: 'nsreekala-PAL-JAN8',
             cloudSpace: 'sandbox',
             credentialsId: 'nanda-pcf',
-            selfSigned: true, // default value is false
-            pluginTimeout: 240, // default value is 120
+            selfSigned: true, 
+            pluginTimeout: 240, 
             servicesToCreate: [
               [name: 'music-database', type: 'p-mysql', plan: '100mb', resetService: true]
             ],
             envVars: [
               [key: 'FOO', value: 'bar']
             ],
-            manifestChoice: [ // optional... defaults to manifestFile: manifest.yml
+            manifestChoice: [
                 manifestFile: 'manifest.yml'
             ]
         ) 
