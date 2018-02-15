@@ -18,10 +18,16 @@ node('master') {
     }
     stage('Teardown'){
         println("Teardown PCF apps and services")
-        bat 'call cf delete spring-music -f'
-        bat 'call cf delete-service music-database -f'
+        try{
+            bat 'call cf delete spring-musics -f'
+            bat 'call cf delete-service music-database -f'
+        } catch(Exception e){
+            echo "CF delete app/service failed"
+            currentBuild.result = 'FAILURE'
+        }
     }
     stage('Deploy') {
+        when (currentBuild.result = 'SUCCESS')
         println("Entering Deploy Stage")
         /*pushToCloudFoundry(
             target: 'api.system.cumuluslabs.io',
