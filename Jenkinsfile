@@ -25,7 +25,7 @@ node('master') {
             echo "CF delete app/service failed"
             //println(e.getMessage())
             throw err
-            currentBuild.result = 'UNSTABLE'
+            currentBuild.result = 'FAILURE'
         }
     }
     stage('Deploy') {
@@ -58,6 +58,7 @@ node('master') {
     }
     
     stage('Notify'){
+        prinln(currentBuild.result)
         step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'nandagopan.gs@cognizant.com 673326@cognizant.com', sendToIndividuals: false])
     }
 }
