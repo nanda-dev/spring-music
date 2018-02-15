@@ -24,7 +24,7 @@ node('master') {
         } catch(err){
             echo "CF delete app/service failed"
             //println(e.getMessage())
-            println(err)
+            throw err
             currentBuild.result = 'FAILURE'
         }
     }
