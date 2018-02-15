@@ -23,7 +23,7 @@ node('master') {
             bat 'call cf delete-service music-database -f'
         } catch(Exception e){
             echo "CF delete app/service failed"
-            println(e.printStackTrace())
+            throw e
             currentBuild.result = 'FAILURE'
         }
     }
